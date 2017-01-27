@@ -3,10 +3,14 @@
  * instead you will have to restart the process to do so.
  */
 
-// import express from "express";
 const express = require("express");
 const morgan = require("morgan");
 const path = require("path");
+
+// FIXME:
+// Hack to ignore stylus imports during SSR. We should find a more robust
+// solution for handling this that doesn't require patches.
+require.extensions['.styl'] = () => {}
 
 const app = express();
 

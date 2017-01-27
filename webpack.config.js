@@ -4,15 +4,15 @@
  */
 
 const nib = require('nib')
-const path = require("path");
-const webpack = require("webpack");
+const path = require('path');
+const webpack = require('webpack');
 
 module.exports = {
-  devtool: "#inline-source-map",
+  devtool: '#inline-source-map',
   entry: {
-    "app": [
-      "./src/client",
-      "webpack-hot-middleware/client",
+    'app': [
+      './src/client',
+      'webpack-hot-middleware/client',
     ]
   },
   module: {
@@ -24,7 +24,7 @@ module.exports = {
       },
       {
         test: /\.json$/,
-        loader: "json-loader"
+        loader: 'json-loader'
       },
       {
         test: /\.styl$/,
@@ -32,29 +32,33 @@ module.exports = {
           'style-loader',
           'css-loader',
           {
-            loader: 'stylus-loader',
-            options: {
-              use: [nib()],
-            },
-          },
+            loader: 'stylus-loader'
+          }
         ],
       }
     ]
   },
   output: {
-    filename: "[name].js",
-    path: path.join(__dirname, "assets"),
-    publicPath: "/assets",
+    filename: '[name].js',
+    path: path.join(__dirname, 'assets'),
+    publicPath: '/assets',
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin("commons.chunk"),
+    new webpack.LoaderOptionsPlugin({
+      test: /\.styl$/,
+      stylus: {
+        use: [nib()],
+        import: ['~nib/lib/nib/index.styl']
+      }
+    }),
+    new webpack.optimize.CommonsChunkPlugin('commons.chunk'),
   ],
   resolve: {
-    extensions: [".js", ".jsx"],
+    extensions: ['.js', '.jsx', '.styl'],
     modules: [
       path.join(__dirname, 'src'),
       'node_modules'
     ]
-  },
+  }
 };

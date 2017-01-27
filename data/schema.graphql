@@ -491,6 +491,7 @@ type Artwork implements Node {
   medium: String
   date: String
   image_rights: String
+  image_title: String
   website: String
   collecting_institution: String
   partner(
@@ -593,6 +594,7 @@ enum ArtworkAggregation {
   GALLERY
   INSTITUTION
   TOTAL
+  ARTIST
   FOLLOWED_ARTISTS
   MERCHANDISABLE_ARTISTS
 }
@@ -706,6 +708,7 @@ type ArtworkContextPartnerShow implements Node {
   press_release(format: Format): String
   start_at(format: String, timezone: String, convert_to_utc: Boolean): String
   end_at(format: String, timezone: String, convert_to_utc: Boolean): String
+  created_at(format: String, timezone: String, convert_to_utc: Boolean): String
 
   # A formatted description of the start to end dates
   exhibition_period: String
@@ -837,6 +840,7 @@ type ArtworkSearchEntity implements Node {
   medium: String
   date: String
   image_rights: String
+  image_title: String
   website: String
   collecting_institution: String
   partner(
@@ -1276,9 +1280,11 @@ type Gene implements Node {
     partner_id: ID
     partner_cities: [String]
     price_range: String
+    estimate_range: String
     page: Int
     size: Int
     sort: String
+    sale_id: ID
   ): FilterArtworks
   href: String
   name: String
@@ -1322,9 +1328,11 @@ type GeneItem implements Node {
     partner_id: ID
     partner_cities: [String]
     price_range: String
+    estimate_range: String
     page: Int
     size: Int
     sort: String
+    sale_id: ID
   ): FilterArtworks
   href: String
   name: String
@@ -1406,6 +1414,7 @@ type HighlightedShow implements Node {
   press_release(format: Format): String
   start_at(format: String, timezone: String, convert_to_utc: Boolean): String
   end_at(format: String, timezone: String, convert_to_utc: Boolean): String
+  created_at(format: String, timezone: String, convert_to_utc: Boolean): String
 
   # A formatted description of the start to end dates
   exhibition_period: String
@@ -1545,9 +1554,14 @@ type HomePageHeroUnit {
   # A type-specific Gravity Mongo Document ID.
   _id: String!
   cached: Int
+  mode: HomePageHeroUnitMode
   heading: String
   href: String
   title: String
+  title_image_url(retina: Boolean): String
+  subtitle: String
+  link_text: String
+  credit_line: String
 
   # The image to show, on desktop this defaults to the wide version.
   background_image_url(version: HomePageHeroUnitImageVersion): String
@@ -1556,6 +1570,15 @@ type HomePageHeroUnit {
 enum HomePageHeroUnitImageVersion {
   WIDE
   NARROW
+}
+
+enum HomePageHeroUnitMode {
+  LEFT_DARK
+  LEFT_LIGHT
+  CENTERED_DARK
+  CENTERED_LIGHT
+  RIGHT_DARK
+  RIGHT_LIGHT
 }
 
 enum HomePageHeroUnitPlatform {
@@ -1640,9 +1663,11 @@ type HomePageModuleContextGene implements Node {
     partner_id: ID
     partner_cities: [String]
     price_range: String
+    estimate_range: String
     page: Int
     size: Int
     sort: String
+    sale_id: ID
   ): FilterArtworks
   href: String
   name: String
@@ -2105,6 +2130,7 @@ type PartnerShow implements Node {
   press_release(format: Format): String
   start_at(format: String, timezone: String, convert_to_utc: Boolean): String
   end_at(format: String, timezone: String, convert_to_utc: Boolean): String
+  created_at(format: String, timezone: String, convert_to_utc: Boolean): String
 
   # A formatted description of the start to end dates
   exhibition_period: String
@@ -2190,6 +2216,7 @@ type PartnerShowSearchEntity implements Node {
   press_release(format: Format): String
   start_at(format: String, timezone: String, convert_to_utc: Boolean): String
   end_at(format: String, timezone: String, convert_to_utc: Boolean): String
+  created_at(format: String, timezone: String, convert_to_utc: Boolean): String
 
   # A formatted description of the start to end dates
   exhibition_period: String
@@ -2489,9 +2516,11 @@ type RootQueryType {
     partner_id: ID
     partner_cities: [String]
     price_range: String
+    estimate_range: String
     page: Int
     size: Int
     sort: String
+    sale_id: ID
   ): FilterArtworks
 
   # A PartnerCategory
