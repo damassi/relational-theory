@@ -8,8 +8,10 @@
   "license": "MIT",
   "scripts": {
     "start": "babel-node index.js",
-    "test": "jest",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "sync-elan": "cd externals/elan && git fetch && git checkout origin/master",
+    "sync-schema": "cd externals/metaphysics && git fetch && git checkout origin/master && yarn install && npm run dump-schema -- ../../data",
+    "test": "jest"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
@@ -18,9 +20,7 @@
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-module-resolver": "^2.4.0",
-    "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-plugin-transform-flow-strip-types": "^6.21.0",
     "babel-plugin-transform-react-jsx": "^6.8.0",
     "babel-plugin-transform-regenerator": "^6.21.0",
     "babel-polyfill": "^6.20.0",
@@ -29,12 +29,16 @@
     "babel-preset-stage-3": "^6.17.0",
     "babel-relay-plugin": "https://github.com/alloy/relay/releases/download/v0.9.3/babel-relay-plugin-0.9.3.tgz",
     "chokidar": "^1.6.1",
+    "css-loader": "^0.26.1",
     "jest": "^18.0.0",
     "json-loader": "^0.5.4",
     "longjohn": "alloy/longjohn#update-source-map-support",
+    "nib": "^1.1.2",
     "react-hot-loader": "^1.3.1",
     "react-storybooks-relay-container": "^1.0.1",
     "storyshots": "orta/storyshots#49bfe52",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.4.0",
     "webpack": "v2.2.0-rc.5",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.14.0"

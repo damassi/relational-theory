@@ -1,13 +1,15 @@
 {
-    "presets": [
-        "es2015",
-        "stage-3",
-        "react"
-    ],
-    "plugins": [
-        "./data/schema",
-        "syntax-async-functions",
-        "transform-regenerator",
-        "transform-class-properties"
-    ]
+  "presets": [
+    "es2015",
+    "stage-3",
+    "react"
+  ],
+  "plugins": [
+    "./data/schema",
+    ["module-resolver", {
+      "root": ["./src"]
+    }],
+    "transform-class-properties",
+    "transform-regenerator"
+  ]
 }

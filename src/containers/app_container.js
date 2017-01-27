@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as Relay from "react-relay"
+import './app_container.styl'
 
 export class AppContainer extends Component {
   render() {

@@ -5,10 +5,10 @@ import * as Relay from "react-relay"
 
 import IsomorphicRelay from "isomorphic-relay"
 
-import { artsyRelayMiddleware } from "./relay/config"
-import { ArtistQueryConfig } from "./relay/root_queries"
+import { artsyRelayMiddleware } from "relay/config"
+import { ArtistQueryConfig } from "relay/root_queries"
 
-import AppContainer from "./containers/app_container"
+import AppContainer from "containers/app_container"
 
 const app = express.Router()
 

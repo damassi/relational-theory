@@ -77,7 +77,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Dynamically load app routes so that they can be reloaded in development.
 app.use((req, res, next) => {
-  require("./app/routes").default(req, res, next);
+  require("./src/routes").default(req, res, next);
 });
 
 app.listen(3000, () => {

@@ -2,10 +2,10 @@ import IsomorphicRelay from "isomorphic-relay"
 import * as React from "react"
 import * as ReactDOM from "react-dom"
 
-import { artsyRelayEnvironment } from "../relay/config"
-import { ArtistQueryConfig } from "../relay/root_queries"
+import { artsyRelayEnvironment } from "relay/config"
+import { ArtistQueryConfig } from "relay/root_queries"
 
-import AppContainer from "../containers/app_container"
+import AppContainer from "containers/app_container"
 
 const rootElement = document.getElementById("root")
 
