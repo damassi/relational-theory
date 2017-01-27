@@ -9,7 +9,6 @@
     ["module-resolver", {
       "root": ["./src"]
     }],
-    "transform-class-properties",
-    "transform-regenerator"
+    "transform-runtime"
   ]
 }
