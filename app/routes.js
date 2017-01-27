@@ -8,7 +8,7 @@ import IsomorphicRelay from "isomorphic-relay"
 import { artsyRelayMiddleware } from "./relay/config"
 import { ArtistQueryConfig } from "./relay/root_queries"
 
-import AppContainer from "./containers/AppContainer"
+import AppContainer from "./containers/app_container"
 
 const app = express.Router()
 
@@ -20,12 +20,17 @@ app.get("/", (req, res, next) => {
   </ul></body></html>`)
 })
 
-app.get("/artist/:id", (req, res, next) => {
-  IsomorphicRelay.prepareData({
-    Container: AppContainer,
-    queryConfig: new ArtistQueryConfig({ artistID: req.params.id }),
-  }, res.locals.networkLayer).then(({ data, props }) => {
-    const content = ReactDOMServer.renderToString(<IsomorphicRelay.Renderer {...props} />)
+app.get("/artist/:id", async (req, res, next) => {
+  try {
+    const { data, props } = await IsomorphicRelay.prepareData({
+      Container: AppContainer,
+      queryConfig: new ArtistQueryConfig({ artistID: req.params.id }),
+    }, res.locals.networkLayer)
+
+    const content = ReactDOMServer.renderToString(
+      <IsomorphicRelay.Renderer {...props} />
+    )
+
     res.send(`
       <html>
       <head>
@@ -41,7 +46,9 @@ app.get("/artist/:id", (req, res, next) => {
       </body>
       </html>
     `)
-  }).catch(next)
+  } catch (error) {
+    return next(error)
+  }
 })
 
 export default app

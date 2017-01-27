@@ -5,7 +5,7 @@ import * as ReactDOM from "react-dom"
 import { artsyRelayEnvironment } from "../relay/config"
 import { ArtistQueryConfig } from "../relay/root_queries"
 
-import AppContainer from "../containers/AppContainer"
+import AppContainer from "../containers/app_container"
 
 const rootElement = document.getElementById("root")
 

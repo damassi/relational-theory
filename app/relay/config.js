@@ -19,13 +19,6 @@ export function artsyRelayMiddleware(req, res, next) {
   next()
 }
 
-// // TODO: Send to definitely typed?
-// declare module "react-relay" {
-//   class Environment {
-//     injectNetworkLayer(networkLayer: RelayNetworkLayer): void
-//   }
-// }
-
 /*
  * For the client.
  */
