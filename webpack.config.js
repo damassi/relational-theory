@@ -1,6 +1,6 @@
 const nib = require('nib')
-const path = require('path');
-const webpack = require('webpack');
+const path = require('path')
+const webpack = require('webpack')
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 
@@ -9,7 +9,7 @@ const config = {
   entry: {
     'app': [
       './src/client',
-      'webpack-hot-middleware/client',
+      'webpack-hot-middleware/client'
     ]
   },
   module: {
@@ -31,14 +31,14 @@ const config = {
           {
             loader: 'stylus-loader'
           }
-        ],
+        ]
       }
     ]
   },
   output: {
     filename: '[name].js',
     path: path.join(__dirname, 'assets'),
-    publicPath: '/assets',
+    publicPath: '/assets'
   },
   plugins: [
     new webpack.LoaderOptionsPlugin({
@@ -48,7 +48,7 @@ const config = {
         import: ['~nib/lib/nib/index.styl']
       }
     }),
-    new webpack.optimize.CommonsChunkPlugin('commons.chunk'),
+    new webpack.optimize.CommonsChunkPlugin('commons.chunk')
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.styl'],
@@ -57,7 +57,7 @@ const config = {
       'node_modules'
     ]
   }
-};
+}
 
 if (NODE_ENV === 'development') {
   config.plugins.push(

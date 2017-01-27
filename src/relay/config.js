@@ -1,20 +1,20 @@
-import * as Relay from "react-relay"
+import * as Relay from 'react-relay'
 
-export const metaphysicsURL = "https://metaphysics-staging.artsy.net"
+export const metaphysicsURL = 'https://metaphysics-staging.artsy.net'
 
-export function artsyNetworkLayer() {
+export function artsyNetworkLayer () {
   return new Relay.DefaultNetworkLayer(metaphysicsURL, {
     headers: {
       // 'X-USER-ID': Emission.userID,
       // 'X-ACCESS-TOKEN': Emission.authenticationToken,
-    },
+    }
   })
 }
 
 /*
  * For the server.
  */
-export function artsyRelayMiddleware(req, res, next) {
+export function artsyRelayMiddleware (req, res, next) {
   res.locals.networkLayer = artsyNetworkLayer()
   next()
 }
@@ -22,7 +22,7 @@ export function artsyRelayMiddleware(req, res, next) {
 /*
  * For the client.
  */
-export function artsyRelayEnvironment() {
+export function artsyRelayEnvironment () {
   const env = new Relay.Environment()
   env.injectNetworkLayer(artsyNetworkLayer())
   return env

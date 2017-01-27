@@ -1,7 +1,6 @@
 import * as express from "express"
 import * as React from "react"
 import * as ReactDOMServer from "react-dom/server"
-import * as Relay from "react-relay"
 
 import IsomorphicRelay from "isomorphic-relay"
 
@@ -14,7 +13,7 @@ const app = express.Router()
 
 app.use(artsyRelayMiddleware)
 
-app.get("/", (req, res, next) => {
+app.get("/", (req, res) => {
   res.send(`<html><body><ul>
     <li>does this work!</div>
   </ul></body></html>`)

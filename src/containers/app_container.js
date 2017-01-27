@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import * as Relay from "react-relay"
+import * as Relay from 'react-relay'
 import './app_container.styl'
 
 export class AppContainer extends Component {
-  render() {
-    console.log(this.props);
+  render () {
+    console.log(this.props) // eslint-disable-line
     return (
       <div>
         hi!
@@ -24,6 +24,6 @@ export default Relay.createContainer(AppContainer, {
           articles
         }
       }
-    `,
-  },
+    `
+  }
 })
