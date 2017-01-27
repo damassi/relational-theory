@@ -6,10 +6,8 @@
     ],
     "plugins": [
         "./data/schema",
-        "transform-flow-strip-types",
         "syntax-async-functions",
         "transform-regenerator",
-        "transform-class-properties",
-        ["module-resolver", { "alias": { "react-native": "react-native-web" } }]
+        "transform-class-properties"
     ]
 }

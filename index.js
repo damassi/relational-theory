@@ -37,12 +37,12 @@ if (process.env.NODE_ENV === "production") {
   // thus effectively reloading the file on a subsequent request.
   const appPath = path.join(__dirname, "app");
   const watcher = require("chokidar").watch(appPath);
-  watcher.on("ready", function () {
+  watcher.on("ready", () => {
     // TODO See if this can be optimsed to reload less files.
     //      Basically need to know dependency graph of modules, maybe flow can help?
-    watcher.on("all", function () {
+    watcher.on("all", () => {
       // console.log(`Clearing module cache in: ${appPath}`)
-      Object.keys(require.cache).forEach(function (id) {
+      Object.keys(require.cache).forEach((id) => {
         if (id.startsWith(appPath)) {
           delete require.cache[id];
         }
@@ -53,7 +53,7 @@ if (process.env.NODE_ENV === "production") {
   // In case of an uncaught exception show it to the user and proceed, rather than exiting the process.
   // NOTE: This is a bad thing when it comes to concurrency, basically you can’t have 2 requests at the same time.
   let currentResponse = null;
-  app.use(function (req, res, next) {
+  app.use((req, res, next) => {
     // if (currentResponse) {
     //   console.error("No concurrent requests may be made, only 1 at a time.");
     //   process.abort();
@@ -76,7 +76,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Dynamically load app routes so that they can be reloaded in development.
-app.use(function (req, res, next) {
+app.use((req, res, next) => {
   require("./app/routes").default(req, res, next);
 });
 

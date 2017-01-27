@@ -7,23 +7,16 @@
   "author": "Eloy Durán",
   "license": "MIT",
   "scripts": {
-    "start": "ts-babel-node index.js",
-    "test": "yarn run tslint -- --project tsconfig.json app/**/**.{ts,tsx} && jest",
-    "sync-schema": "cd externals/metaphysics && git fetch && git checkout origin/master && yarn install && npm run dump-schema -- ../../data",
-    "sync-colors": "cd externals/elan && git fetch && git checkout origin/master && cp components/lib/variables/colors.json ../../data",
-    "create-types": "gql2ts data/schema.json",
+    "start": "babel-node index.js",
+    "test": "jest",
     "storybook": "start-storybook -p 6006"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
-    "@types/isomorphic-fetch": "^0.0.31",
-    "@types/jest": "^16.0.3",
-    "@types/node": "^6.0.55",
-    "@types/react": "^0.14.55",
-    "@types/react-dom": "^0.14.20",
-    "@types/react-relay": "^0.9.8",
-    "babel-cli": "^6.18.0",
+    "babel-cli": "^6.22.2",
+    "babel-core": "^6.22.1",
     "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.2.10",
     "babel-plugin-module-resolver": "^2.4.0",
     "babel-plugin-syntax-async-functions": "^6.13.0",
     "babel-plugin-transform-class-properties": "^6.19.0",
@@ -42,17 +35,11 @@
     "react-hot-loader": "^1.3.1",
     "react-storybooks-relay-container": "^1.0.1",
     "storyshots": "orta/storyshots#49bfe52",
-    "ts-babel-node": "orta/ts-babel-node#tsx",
-    "ts-jest": "^18.0.1",
-    "ts-node": "^2.0.0",
-    "tslint": "^4.3.1",
     "webpack": "v2.2.0-rc.5",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.14.0"
   },
   "dependencies": {
-    "aphrodite": "^1.1.0",
-    "awesome-typescript-loader": "v3.0.0-beta.13",
     "express": "^4.14.0",
     "isomorphic-fetch": "^2.2.1",
     "isomorphic-relay": "^0.7.3",
@@ -60,19 +47,13 @@
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-jss": "^5.1.1",
-    "react-native-web": "^0.0.68",
-    "react-relay": "https://github.com/alloy/relay/releases/download/v0.9.3/react-relay-0.9.3.tgz",
-    "typescript": "^2.1.4"
+    "react-relay": "https://github.com/alloy/relay/releases/download/v0.9.3/react-relay-0.9.3.tgz"
   },
   "jest": {
-    "transform": {
-      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(js|jsx)$",
     "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
+      "js",
+      "jsx"
     ]
   }
 }
