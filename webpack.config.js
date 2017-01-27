@@ -1,13 +1,10 @@
-/*
- * Changes to this file will not be automatically reloaded,
- * instead you will have to restart the process to do so.
- */
-
 const nib = require('nib')
 const path = require('path');
 const webpack = require('webpack');
 
-module.exports = {
+const NODE_ENV = process.env.NODE_ENV || 'development'
+
+const config = {
   devtool: '#inline-source-map',
   entry: {
     'app': [
@@ -44,7 +41,6 @@ module.exports = {
     publicPath: '/assets',
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.LoaderOptionsPlugin({
       test: /\.styl$/,
       stylus: {
@@ -62,3 +58,24 @@ module.exports = {
     ]
   }
 };
+
+if (NODE_ENV === 'development') {
+  config.plugins.push(
+    new webpack.HotModuleReplacementPlugin(),
+  )
+} else {
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compressor: {
+        warnings: false
+      }
+    })
+  )
+}
+
+module.exports = config
