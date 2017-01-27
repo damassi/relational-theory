@@ -5,6 +5,9 @@
     "mocha": true,
     "es6": true
   },
+  "globals": {
+    "DEVELOPMENT": true
+  },
   "parser": "babel-eslint",
   "plugins": [
     "react",

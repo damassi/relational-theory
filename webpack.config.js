@@ -3,13 +3,14 @@ const path = require('path')
 const webpack = require('webpack')
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
+const DEVELOPMENT = NODE_ENV === 'development'
+const PRODUCTION = NODE_ENV === 'production'
 
 const config = {
   devtool: '#inline-source-map',
   entry: {
-    'app': [
-      './src/client',
-      'webpack-hot-middleware/client'
+    app: [
+      './src/client'
     ]
   },
   module: {
@@ -59,11 +60,19 @@ const config = {
   }
 }
 
-if (NODE_ENV === 'development') {
+if (DEVELOPMENT) {
+  config.entry.app.push('webpack-hot-middleware/client')
   config.plugins.push(
-    new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('development')
+      }
+    }),
+    new webpack.HotModuleReplacementPlugin()
   )
-} else {
+}
+
+if (PRODUCTION) {
   config.plugins.push(
     new webpack.DefinePlugin({
       'process.env': {

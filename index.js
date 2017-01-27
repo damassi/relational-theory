@@ -37,9 +37,9 @@ if (process.env.NODE_ENV === 'production') {
   // Allow client to be notified of changes to sources.
   app.use(require('webpack-hot-middleware')(compiler))
 
-  // Watch for FS changes in ./app and clear cached modules when a change occurs,
+  // Watch for FS changes in ./src and clear cached modules when a change occurs,
   // thus effectively reloading the file on a subsequent request.
-  const appPath = path.join(__dirname, 'app')
+  const appPath = path.join(__dirname, 'src')
   const watcher = require('chokidar').watch(appPath)
   watcher.on('ready', () => {
     // TODO See if this can be optimsed to reload less files.

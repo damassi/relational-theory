@@ -1,11 +1,9 @@
-import IsomorphicRelay from "isomorphic-relay"
-import * as React from "react"
-import * as ReactDOM from "react-dom"
-
-import { artsyRelayEnvironment } from "relay/config"
-import { ArtistQueryConfig } from "relay/root_queries"
-
 import AppContainer from "containers/app_container"
+import IsomorphicRelay from "isomorphic-relay"
+import React from "react"
+import ReactDOM from "react-dom"
+import { ArtistQueryConfig } from "relay/root_queries"
+import { artsyRelayEnvironment } from "relay/config"
 
 const rootElement = document.getElementById("root")
 
@@ -19,3 +17,9 @@ IsomorphicRelay.prepareInitialRender({
 }).then((props) => {
   ReactDOM.render(<IsomorphicRelay.Renderer {...props} />, rootElement)
 })
+
+if (process.env.NODE_ENV === 'development') {
+  if (module.hot) {
+    module.hot.accept();
+  }
+}

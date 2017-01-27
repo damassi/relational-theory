@@ -1,13 +1,10 @@
-import * as express from "express"
-import * as React from "react"
-import * as ReactDOMServer from "react-dom/server"
-
-import IsomorphicRelay from "isomorphic-relay"
-
-import { artsyRelayMiddleware } from "relay/config"
-import { ArtistQueryConfig } from "relay/root_queries"
-
 import AppContainer from "containers/app_container"
+import IsomorphicRelay from "isomorphic-relay"
+import React from "react"
+import ReactDOMServer from "react-dom/server"
+import express from "express"
+import { ArtistQueryConfig } from "relay/root_queries"
+import { artsyRelayMiddleware } from "relay/config"
 
 const app = express.Router()
 
@@ -33,7 +30,6 @@ app.get("/artist/:id", async (req, res, next) => {
     res.send(`
       <html>
       <head>
-        <link rel="stylesheet" type="text/css" href="/pure-react/style.css" />
         <script type="text/javascript" src="/assets/commons.chunk.js" defer></script>
         <script type="text/javascript" src="/assets/app.js" defer></script>
         <script type="text/javascript">

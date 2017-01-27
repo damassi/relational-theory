@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as Relay from 'react-relay'
+import Relay from 'react-relay'
 import './app_container.styl'
 
 export class AppContainer extends Component {
@@ -7,7 +7,7 @@ export class AppContainer extends Component {
     console.log(this.props) // eslint-disable-line
     return (
       <div>
-        hi!
+        hey!
       </div>
     )
   }
