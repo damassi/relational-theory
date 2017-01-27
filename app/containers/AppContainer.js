@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
+import * as Relay from "react-relay"
 
-export default class AppContainer extends Component {
+export class AppContainer extends Component {
   render() {
     console.log(this.props);
     return (
@@ -21,10 +22,6 @@ export default Relay.createContainer(AppContainer, {
           partner_shows
           articles
         }
-        artworks(size: 30) {
-          ${Grid.getFragment("artworks")}
-        }
-        ${ArtistHeader.getFragment("artist")}
       }
     `,
   },
